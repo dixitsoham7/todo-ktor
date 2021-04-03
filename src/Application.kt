@@ -3,6 +3,7 @@ package com.soham.todo
 
 import com.soham.todo.entities.ToDoDraft
 import com.soham.todo.repository.InMemoryToDoRepository
+import com.soham.todo.repository.MySQLTodoRepository
 import com.soham.todo.repository.ToDoRepository
 import io.ktor.application.*
 import io.ktor.features.*
@@ -29,7 +30,7 @@ fun Application.module() {
         }
 
         route("/todos") {
-            val repository: ToDoRepository = InMemoryToDoRepository()
+            val repository: ToDoRepository = MySQLTodoRepository()
 
             get {
                 call.respond(repository.getAllToDos())
